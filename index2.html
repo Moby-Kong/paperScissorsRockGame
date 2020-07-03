@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 
 <html lang="en">
 <head>
   <meta charset="utf-8">
 
-  <title>Rock, Paper, Scissors!</title>
+  <title>Rock, Paper, Scissors: Do You Have What It Takes to Beat the RPS Bot 2000?</title>
   <meta name="description" content="rock, paper, scissors game">
   <meta name="Keith Gabler">
 
@@ -15,59 +15,73 @@
     Rock, Paper, Scissors!
   </h1>
   <script>
+      let playerScore = 0;
+      let computerScore = 0;
+
       function computerPlay() {
-        const rockPaperScissors = [`rock`, `paper`, `scissors`];
-        const randomChoice = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
-        return randomChoice;
+          const rockPaperScissors = [`rock`, `paper`, `scissors`];
+          const randomChoice = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
+          return randomChoice;
       }
 
       function playRound(playerSelection, computerSelection) {
-
-        let playerScore = 0;
-        let computerScore = 0;
-        let gameScore = `The score is Human: ${playerScore} Computer:${computerScore}`
-
-
-        if (playerSelection == "paper" && computerSelection == "rock") {
-        playerScore = +playerScore++; 
-        return(`You win! Paper beats rock! ${gameScore}!`);
-        }
-        else if (playerSelection == "scissors" && computerSelection == "rock") {
-          return "You lose! Rock beats scissors!";
-        }
-        else if (playerSelection == "paper" && computerSelection == "scissors") {
-          return "You lose! Scissors beats paper!";
-        }
-        else if (playerSelection == "rock" && computerSelection == "scissors") {
-          return "You win! Rock beats scissors!";
-        }
-        else if (playerSelection == "rock" && computerSelection == "paper") {
-          return "You lose! Paper beats rock!";
-        }
-        else if (playerSelection == "scissors" && computerSelection == "paper") {
-          return "You win! Scissors beats paper!";
-        }
-        else if (playerSelection == "paper" && computerSelection == "paper") {
-          return "It's a tie--paper vs. paper!";
-        }
-        else if (playerSelection == "rock" && computerSelection == "rock") {
-          return "It's a tie--rock vs. rock!";
-        }
-        else if (playerSelection == "scissors" && computerSelection == "scissors") {
-          return "It's a tie--scissors vs. scissors!";
-        }
+          if (playerSelection == "paper" && computerSelection == "rock") {
+              playerScore = playerScore + 1;
+              console.log(`You win! Paper beats rock! The score is Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection == "scissors" && computerSelection == "rock") {
+              computerScore = computerScore + 1;
+              console.log(`You lose! Rock beats scissors! The score is Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection == "paper" && computerSelection == "scissors") {
+              computerScore = computerScore + 1;
+              console.log(`You lose! Scissors beats paper! The score is Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection == "rock" && computerSelection == "scissors") {
+              playerScore = playerScore + 1;
+              console.log(`You win! Rock beats scissors! The score is Human: ${playerScore} Computer: ${computerScore}!`)
+          }
+          else if (playerSelection == "rock" && computerSelection == "paper") {
+              computerScore = computerScore + 1;
+              console.log(`You lose! Paper beats rock! The Score is Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection == "scissors" && computerSelection == "paper") {
+              playerScore = playerScore + 1;
+              console.log(`You win! Scissors beats paper! The score is Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection == "paper" && computerSelection == "paper") {
+              console.log(`It's a tie--paper vs. paper! The score remains Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection == "rock" && computerSelection == "rock") {
+              console.log(`It's a tie--rock vs. rock! It's still Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection == "scissors" && computerSelection == "scissors") {
+              console.log(`It's a tie--scissors vs. scissors! The score is still Human: ${playerScore} Computer: ${computerScore}!`);
+          }
+          else if (playerSelection !== `scissors` || `paper` || `rock`) {
+              console.log(`Not a valid input. This doesn't bode well for your chances with the RPS Bot!!!`)
+          }
       }
-      
+
       function game() {
+          const computer = computerPlay();
+          const human = prompt(`What'll it be? Rock, paper, or scissors?`)
+          playRound(human, computer);
+          playRound(human, computer);
+          playRound(human, computer);
+          playRound(human, computer);
+          playRound(human, computer);
 
-        const computer = computerPlay();
-        const human = prompt(`What'll it be? Rock, paper, or scissors?`)
-
-        playRound(human, computer);
+          if (playerScore > computerScore) {
+              console.log(`You have won!`);
+          }
+          else if (playerScore < computerScore) {
+              console.log(`You have lost!`);
+          }
+          else if (playerScore == computerScore) {
+              console.log(`A tie!`);
+          }
       }
-        
-
-  
 
 
   </script>
